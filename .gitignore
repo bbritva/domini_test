@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+domini_corner
+
+# IDE
+*idea*
