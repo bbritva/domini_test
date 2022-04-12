@@ -18,6 +18,7 @@
 
 #define GAME_NAME "Domini Corners"
 #define BUTTON_COLOR 255,0,0
+#define TEXT_COLOR 0,0,0
 #define HEIGHT 1024
 #define WIDTH 1024
 

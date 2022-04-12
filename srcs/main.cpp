@@ -1,16 +1,18 @@
+#include <cstring>
 #include "main.h"
 
 int main_w;
 
-void displayRasterText(float x ,float y ,float z ,const char *stringToDisplay) {
-
-	glRasterPos3f(x, y, z);
-	for(char* c = const_cast<char *>(stringToDisplay); *c != '\0'; c++){
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24 , *c);
-	}
+void drawText(GLfloat y, const char *text)
+{
+	glPushMatrix();
+	glTranslatef(-30 * (float)strlen(text), y - 50, 0);
+	for (int i = 0; text[i]; i++)
+		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
+	glPopMatrix();
 }
 
-void drawButton(int y)
+void drawButton(int y, std::string buttonName)
 {
 	glColor3ub(BUTTON_COLOR);
 	glBegin(GL_POLYGON);               //Border
@@ -19,6 +21,8 @@ void drawButton(int y)
 	glVertex2f(600 ,y - 150);
 	glVertex2f(600 ,y + 150);
 	glEnd();
+	glColor3ub(TEXT_COLOR);
+	drawText(y, buttonName.c_str());
 }
 
 void display()
@@ -28,12 +32,9 @@ void display()
 //	glLineWidth(10);
 	//SetDisplayMode(MENU_SCREEN);
 
-	std::string str = "fff";
-	drawButton(-500);
-	drawButton(0);
-	drawButton(500);
-	glColor3ub(255,255,255);
-	displayRasterText(0,0,0, str.c_str());
+	drawButton(500, "Start game");
+	drawButton(0, "Credits");
+	drawButton(-500, "Exit");
 	glutPostRedisplay();
 	glFlush();
 	glLoadIdentity();
