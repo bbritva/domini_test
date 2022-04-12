@@ -1,7 +1,7 @@
 NAME		=	domini_corner
 CPP			=	g++ $(CFLAGS)
 RM			=	rm -f
-CFLAGS		=	-Wall -Wextra -Werror -g3 -std=c++14 -Iinclude/ -lglut -lGL -lGLU -lglut -lm
+CFLAGS		=	-Wall -Wextra -Werror -g3 -std=c++14 -Iinclude/ -lglut -lGL -lGLU -lm
 COMM_PATH	=	commands/
 COMM_SRCS	=
 
