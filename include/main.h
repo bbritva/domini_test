@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
+#include <cstring>
 
 #include <GL/gl.h>
 #include <GL/glu.h>

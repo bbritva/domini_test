@@ -1,12 +1,15 @@
-#include <cstring>
+
 #include "main.h"
 
 int main_w;
 
 void drawText(GLfloat y, const char *text)
 {
+
 	glPushMatrix();
 	glTranslatef(-30 * (float)strlen(text), y - 50, 0);
+	glLineWidth(5);
+	glScalef(1.5, 1.5, 1.5);
 	for (int i = 0; text[i]; i++)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
 	glPopMatrix();
