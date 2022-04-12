@@ -14,7 +14,8 @@
 
 #include "GameField.h"
 
-#define GAP 10
+#define HEIGHT 1024
+#define WIDTH 1024
 
 
 #endif //DOMINI_TEST_MAIN_H
