@@ -8,12 +8,16 @@
 #include <csignal>
 #include <cstdlib>
 #include <cstdio>
+#include <iostream>
+
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
 
 #include "GameField.h"
 
+#define GAME_NAME "Domini Corners"
+#define BUTTON_COLOR 255,0,0
 #define HEIGHT 1024
 #define WIDTH 1024
 

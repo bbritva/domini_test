@@ -24,7 +24,7 @@ ENDCOLOR	=	\x1B[0m
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) include/main.h
 			$(CPP) $(OBJS) -o $(NAME)
 			echo "${GREEN}"$(NAME)" is compiled${ENDCOLOR}"
 
