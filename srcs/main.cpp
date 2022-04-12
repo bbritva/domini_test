@@ -43,12 +43,18 @@ void reshape(int w, int h)
 	glutReshapeWindow(width, height);
 }
 
+void mouseClick(int a, int b, int x, int y)
+{
+	printf("a = %d, b = %d, x = %d, y = %d\n", a, b, x, y);
+}
+
 int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB);
 	glutInitWindowSize(210, 210);
 	main_w = glutCreateWindow("4 subwindows");
+	glutMouseFunc(mouseClick);
 	glutDisplayFunc(display);
 	glutVisibilityFunc(vis);
 	glutReshapeFunc(reshape);
