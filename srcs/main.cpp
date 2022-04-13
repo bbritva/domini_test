@@ -8,7 +8,7 @@ void drawStrokeText(GLfloat y, const char *text)
 	glPushMatrix();
 	glTranslatef(-50 * (float)strlen(text), y - 50, 0);
 	glScalef(1.5, 1.5, 1.5);
-	glLineWidth(10);
+	glLineWidth(2);
 	for (int i = 0; text[i]; i++)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
 	glPopMatrix();
@@ -37,25 +37,25 @@ void drawButton(int y, std::string buttonName)
 	glVertex2f(600 ,y + 150);
 	glEnd();
 	glColor3ub(TEXT_COLOR);
-//	drawStrokeText(y, buttonName.c_str());
-	drawBitmapText(y, buttonName.c_str());
+	drawStrokeText(y, buttonName.c_str());
+//	drawBitmapText(y, buttonName.c_str());
 }
 
 void display()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-
-//	glLineWidth(10);
-	//SetDisplayMode(MENU_SCREEN);
-
-	drawButton(500, "Start game");
-	drawButton(0, "Credits");
-	drawButton(-500, "Exit");
-	glutPostRedisplay();
-	glFlush();
-	glLoadIdentity();
-	glutSwapBuffers();
-
+	static bool firstTime = true;
+	if (firstTime)
+	{
+		firstTime = false;
+		glClear(GL_COLOR_BUFFER_BIT);
+		drawButton(500, "Start game");
+		drawButton(0, "Credits");
+		drawButton(-500, "Exit");
+		glutPostRedisplay();
+		glFlush();
+		glLoadIdentity();
+		glutSwapBuffers();
+	}
 }
 
 void vis(int visState)
@@ -109,6 +109,10 @@ void init()
 	glMatrixMode(GL_MODELVIEW);
 }
 
+void refresh() {
+	glutPostRedisplay();
+}
+
 int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
@@ -117,6 +121,7 @@ int main(int argc, char **argv)
 	glutInitWindowSize(WIDTH, HEIGHT);
 	main_w = glutCreateWindow(GAME_NAME);
 	init();
+	glutIdleFunc(refresh);
 	glutMouseFunc(mouseClick);
 	glutVisibilityFunc(vis);
 	glClearColor(1.0, 1.0, 1.0, 1.0);
