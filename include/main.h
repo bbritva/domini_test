@@ -15,7 +15,7 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
-#include "GameField.h"
+#include "MainWindow.h"
 
 #define GAME_NAME "Domini Corners"
 #define BUTTON_COLOR 255,0,0

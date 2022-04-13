@@ -104,8 +104,7 @@ void init()
 	glColor3f(1.0,0.0,0.0);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-
-	gluOrtho2D(-1200,1200,-1200,1200);                   //<-----CHANGE THIS TO GET EXTRA SPACE
+	gluOrtho2D(-1200,1200,-1200,1200);
 	glMatrixMode(GL_MODELVIEW);
 }
 
@@ -115,6 +114,9 @@ void refresh() {
 
 int main(int argc, char **argv)
 {
+	MainWindow mainWindow(&argc, argv);
+	mainWindow.start();
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB);
 	glutInitWindowPosition(0, 0);
