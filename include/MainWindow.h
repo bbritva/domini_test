@@ -21,11 +21,12 @@ private:
 	char **_argv;
     int _windowDescriptor;
 	t_eState _state;
+	static void MainWindow::display();
 
-	void MainWindow::drawButton(int y, std::string buttonName);
+	static void drawButton(int y, std::string buttonName);
 
 public:
-    MainWindow(int *argc, char **argv);
+	MainWindow(int *argc, char **argv);
     ~MainWindow();
 	int start();
 };

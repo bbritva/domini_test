@@ -114,7 +114,7 @@ void refresh() {
 
 int main(int argc, char **argv)
 {
-	MainWindow mainWindow(&argc, argv);
+	static MainWindow mainWindow(&argc, argv);
 	mainWindow.start();
 
 	glutInit(&argc, argv);

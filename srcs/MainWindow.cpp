@@ -38,14 +38,14 @@ void mouseClick(int a, int b, int x, int y)
 	printf("a = %d, b = %d, x = %d, y = %d\n", a, b, x, y);
 }
 
-void display()
+void MainWindow::display()
 {
 	static bool firstTime = true;
 	if (firstTime)
 	{
 		firstTime = false;
 		glClear(GL_COLOR_BUFFER_BIT);
-		this.drawButton(500, "Start game");
+		MainWindow::drawButton(500, "Start game");
 		drawButton(0, "Credits");
 		drawButton(-500, "Exit");
 		glutPostRedisplay();
