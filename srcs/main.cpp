@@ -3,15 +3,27 @@
 
 int main_w;
 
-void drawText(GLfloat y, const char *text)
+void drawStrokeText(GLfloat y, const char *text)
 {
-
 	glPushMatrix();
-	glTranslatef(-30 * (float)strlen(text), y - 50, 0);
-	glLineWidth(5);
+	glTranslatef(-50 * (float)strlen(text), y - 50, 0);
 	glScalef(1.5, 1.5, 1.5);
+	glLineWidth(10);
 	for (int i = 0; text[i]; i++)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
+	glPopMatrix();
+}
+
+void drawBitmapText(int y, const char *text)
+{
+	glPushMatrix();
+	glRasterPos2f(-50 * (float)strlen(text), y);
+
+//	glTranslatef(-50 * (float)strlen(text), y - 50, 0);
+	glScalef(10.5, 10.5, 10.5);
+	glLineWidth(10);
+	for (int i = 0; text[i]; i++)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
 	glPopMatrix();
 }
 
@@ -25,7 +37,8 @@ void drawButton(int y, std::string buttonName)
 	glVertex2f(600 ,y + 150);
 	glEnd();
 	glColor3ub(TEXT_COLOR);
-	drawText(y, buttonName.c_str());
+//	drawStrokeText(y, buttonName.c_str());
+	drawBitmapText(y, buttonName.c_str());
 }
 
 void display()
