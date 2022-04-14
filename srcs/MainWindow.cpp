@@ -15,6 +15,17 @@ MainWindow::~MainWindow() {
 
 }
 
+void MainWindow::drawStrokeText(GLfloat y, const char *text)
+{
+	glPushMatrix();
+	glTranslatef(-50 * (float)strlen(text), y - 50, 0);
+	glScalef(1.5, 1.5, 1.5);
+	glLineWidth(2);
+	for (int i = 0; text[i]; i++)
+		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
+	glPopMatrix();
+}
+
 void MainWindow::drawButton(int y, std::string buttonName)
 {
 	glColor3ub(BUTTON_COLOR);
@@ -26,14 +37,13 @@ void MainWindow::drawButton(int y, std::string buttonName)
 	glEnd();
 	glColor3ub(TEXT_COLOR);
 	drawStrokeText(y, buttonName.c_str());
-//	drawBitmapText(y, buttonName.c_str());
 }
 
-void refresh() {
+void MainWindow::refresh() {
 	glutPostRedisplay();
 }
 
-void mouseClick(int a, int b, int x, int y)
+void MainWindow::mouseClick(int a, int b, int x, int y)
 {
 	printf("a = %d, b = %d, x = %d, y = %d\n", a, b, x, y);
 }
