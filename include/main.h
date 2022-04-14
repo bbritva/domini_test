@@ -15,7 +15,9 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
+#include "typedefs.h"
 #include "MainWindow.h"
+#include "GameCore.h"
 
 #define GAME_NAME "Domini Corners"
 #define BUTTON_COLOR 255,0,0
@@ -23,5 +25,7 @@
 #define HEIGHT 1024
 #define WIDTH 1024
 
+void addEventHandlers();
+int init(int *argc, char **argv);
 
 #endif //DOMINI_TEST_MAIN_H

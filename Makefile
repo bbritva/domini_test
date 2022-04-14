@@ -9,7 +9,7 @@ CHNL_PATH	=
 CHNL_SRCS	=
 SRVR_PATH	=	
 SRVR_SRCS	=
-SRCS		=	$(addprefix srcs/, main.cpp MainWindow.cpp\
+SRCS		=	$(addprefix srcs/, main.cpp MainWindow.cpp GameCore.cpp\
 					$(addprefix $(COMM_PATH), $(COMM_SRCS)) \
 					$(addprefix $(CHNL_PATH), $(CHNL_SRCS)) \
 					$(addprefix $(SRVR_PATH), $(SRVR_SRCS)) \
