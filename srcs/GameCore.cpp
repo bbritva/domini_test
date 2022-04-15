@@ -52,6 +52,7 @@ int GameCore::getHeight() const
 
 void GameCore::setHeight(int height)
 {
+	_stateChanged = true;
 	_height = height;
 }
 
@@ -62,5 +63,6 @@ int GameCore::getWidth() const
 
 void GameCore::setWidth(int width)
 {
+	_stateChanged = true;
 	_width = width;
 }

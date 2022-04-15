@@ -17,6 +17,8 @@ void addEventHandlers() {
 	glutIdleFunc(MainWindow::refresh);
 	glutMouseFunc(MainWindow::mouseClick);
 	glutDisplayFunc(MainWindow::display);
+	glutReshapeFunc(MainWindow::reshape);
+
 }
 
 int init(int *argc, char **argv)

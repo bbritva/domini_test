@@ -20,6 +20,7 @@ private:
 
 public:
 	static void refresh();
+	static void reshape(int height, int width);
 	static void mouseClick(int a, int keyState, int x, int y);
 	static void display();
 };

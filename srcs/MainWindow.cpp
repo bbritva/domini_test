@@ -36,6 +36,11 @@ void MainWindow::drawButton(int y, std::string buttonName)
 void MainWindow::refresh() {
 	glutPostRedisplay();
 }
+void MainWindow::reshape(int height, int width) {
+	gameCore->setHeight(height);
+	gameCore->setWidth(width);
+	glutPostRedisplay();
+}
 
 void MainWindow::clickOnMenu(int keyCode, int keyState, int x, int y)
 {
