@@ -10,8 +10,8 @@ MainWindow::~MainWindow() {
 void MainWindow::drawStrokeText(GLfloat y, const char *text)
 {
 	glPushMatrix();
-	glTranslatef(-50 * (float)strlen(text), y - 50, 0);
-	glScalef(1.5, 1.5, 1.5);
+	glTranslatef(gameCore->getWidth()/ 2, y, 0);
+	glScalef(1.5, 1.5, 1);
 	glLineWidth(2);
 	for (int i = 0; text[i]; i++)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
@@ -20,14 +20,14 @@ void MainWindow::drawStrokeText(GLfloat y, const char *text)
 
 void MainWindow::drawButton(int y, std::string buttonName)
 {
-	t_eButton button = static_cast<t_eButton>((y + 500) / 3);
+	t_eButton button = static_cast<t_eButton>((y - GLU_ORTO_HEIGHT / 6) * 3);
 	gameCore->isButtonPressed(button) ? glColor3ub(BUTTON_PRESSED_COLOR) :
 										glColor3ub(BUTTON_COLOR);
 	glBegin(GL_POLYGON);               //Border
-	glVertex2f(-600, y + 150);
-	glVertex2f(-600, y - 150);
-	glVertex2f(600, y - 150);
-	glVertex2f(600, y + 150);
+	glVertex2i(GLU_ORTO_WIDTH / 4, y + GLU_ORTO_HEIGHT / 12);
+	glVertex2i(GLU_ORTO_WIDTH / 4, y - GLU_ORTO_HEIGHT / 12);
+	glVertex2i(3 * GLU_ORTO_WIDTH / 4, y - GLU_ORTO_HEIGHT / 12);
+	glVertex2i(3 * GLU_ORTO_WIDTH / 4, y + GLU_ORTO_HEIGHT / 12);
 	glEnd();
 	glColor3ub(TEXT_COLOR);
 	drawStrokeText(y, buttonName.c_str());
@@ -40,7 +40,8 @@ void MainWindow::refresh() {
 void MainWindow::clickOnMenu(int keyCode, int keyState, int x, int y)
 {
 	std::cout << "mouse 0\n";
-
+	x *= 2;
+	y *= 2;
 	if (keyCode != LEFT_MOUSE_BUTTON)
 		return;
 	if (!keyState && x > -600 && x < 600)
@@ -56,8 +57,8 @@ void MainWindow::clickOnMenu(int keyCode, int keyState, int x, int y)
 			}
 		}
 	}
-//	else
-//		gameCore->resetButtons();
+	else
+		gameCore->resetButtons();
 }
 void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
 {
@@ -83,9 +84,9 @@ void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
 
 void MainWindow::drawMenu()
 {
-	drawButton(500, "Start game");
-	drawButton(0, "Credits");
-	drawButton(-500, "Exit");
+	drawButton(GLU_ORTO_HEIGHT / 6, "Start game");
+	drawButton(GLU_ORTO_HEIGHT / 2, "Credits");
+	drawButton(5 * GLU_ORTO_HEIGHT / 6, "Exit");
 }
 
 void MainWindow::display()

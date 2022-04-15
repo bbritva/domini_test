@@ -7,6 +7,8 @@ private:
 	t_eState	_state;
 	bool		_stateChanged;
 	uint8_t		_buttonPressedMask;
+	int			_height;
+	int			_width;
 
 public:
 	bool isStateChanged() const;
@@ -19,6 +21,15 @@ public:
 	t_eState getState() const;
 
 	GameCore();
+
+	int getHeight() const;
+
+	void setHeight(int height);
+
+	int getWidth() const;
+
+	void setWidth(int width);
+
 	~GameCore();
 };
 

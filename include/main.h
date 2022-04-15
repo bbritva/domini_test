@@ -23,8 +23,10 @@
 #define BUTTON_COLOR 255,0,0
 #define BUTTON_PRESSED_COLOR 0,255,0
 #define TEXT_COLOR 0,0,0
-#define HEIGHT 1024
-#define WIDTH 1024
+#define WINDOW_HEIGHT 1200
+#define WINDOW_WIDTH 1200
+#define GLU_ORTO_HEIGHT 2400
+#define GLU_ORTO_WIDTH 2400
 #define LEFT_MOUSE_BUTTON 0
 
 void addEventHandlers();

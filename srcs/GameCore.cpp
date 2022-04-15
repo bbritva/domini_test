@@ -3,6 +3,8 @@
 GameCore::GameCore() {
 	_state = MENU;
 	_stateChanged = true;
+	_height = WINDOW_HEIGHT;
+	_width = WINDOW_WIDTH;
 }
 
 GameCore::~GameCore() {
@@ -41,4 +43,24 @@ void GameCore::setButtonPressed(t_eButton button) {
 
 void GameCore::setStateChanged(bool state) {
 	_stateChanged = state;
+}
+
+int GameCore::getHeight() const
+{
+	return _height;
+}
+
+void GameCore::setHeight(int height)
+{
+	_height = height;
+}
+
+int GameCore::getWidth() const
+{
+	return _width;
+}
+
+void GameCore::setWidth(int width)
+{
+	_width = width;
 }
