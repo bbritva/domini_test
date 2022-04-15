@@ -1,7 +1,3 @@
-//
-// Created by bbritva on 14.04.2022.
-//
-
 #ifndef DOMINI_TEST_TYPEDEFS_H
 #define DOMINI_TEST_TYPEDEFS_H
 
@@ -12,5 +8,11 @@ typedef enum e_State {
 	GAME_MOVING,
 	END_GAME
 } t_eState;
+
+typedef enum e_Button {
+	START,
+	CREDITS,
+	EXIT
+} t_eButton;
 
 #endif //DOMINI_TEST_TYPEDEFS_H

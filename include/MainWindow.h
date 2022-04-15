@@ -13,13 +13,14 @@ private:
 	static void drawMenu();
 	static void drawButton(int y, std::string buttonName);
 	static void drawStrokeText(GLfloat y, const char *text);
+	static void clickOnMenu(int keyCode, int keyState, int x, int y);
 
 	MainWindow();
 	~MainWindow();
 
 public:
 	static void refresh();
-	static void mouseClick(int a, int b, int x, int y);
+	static void mouseClick(int a, int keyState, int x, int y);
 	static void display();
 };
 

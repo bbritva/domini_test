@@ -6,11 +6,17 @@ class GameCore {
 private:
 	t_eState	_state;
 	bool		_stateChanged;
+	uint8_t		_buttonPressedMask;
 
 public:
 	bool isStateChanged() const;
-	t_eState getState() const;
+	void setStateChanged(bool state);
 	void setState(t_eState state);
+	bool isButtonPressed(t_eButton button) const;
+	void setButtonPressed(t_eButton button);
+	void resetButtons();
+
+	t_eState getState() const;
 
 	GameCore();
 	~GameCore();
