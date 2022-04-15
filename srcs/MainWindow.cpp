@@ -20,14 +20,14 @@ void MainWindow::drawStrokeText(GLfloat y, const char *text)
 
 void MainWindow::drawButton(int y, std::string buttonName)
 {
-	t_eButton button = static_cast<t_eButton>((y - GLU_ORTO_HEIGHT / 6) * 3);
+	t_eButton button = static_cast<t_eButton>((y - gameCore->getHeight() / 6) * 3);
 	gameCore->isButtonPressed(button) ? glColor3ub(BUTTON_PRESSED_COLOR) :
 										glColor3ub(BUTTON_COLOR);
 	glBegin(GL_POLYGON);               //Border
-	glVertex2i(GLU_ORTO_WIDTH / 4, y + GLU_ORTO_HEIGHT / 12);
-	glVertex2i(GLU_ORTO_WIDTH / 4, y - GLU_ORTO_HEIGHT / 12);
-	glVertex2i(3 * GLU_ORTO_WIDTH / 4, y - GLU_ORTO_HEIGHT / 12);
-	glVertex2i(3 * GLU_ORTO_WIDTH / 4, y + GLU_ORTO_HEIGHT / 12);
+	glVertex2i(gameCore->getWidth() / 4, y + gameCore->getHeight() / 12);
+	glVertex2i(gameCore->getWidth() / 4, y - gameCore->getHeight() / 12);
+	glVertex2i(3 * gameCore->getWidth() / 4, y - gameCore->getHeight() / 12);
+	glVertex2i(3 * gameCore->getWidth() / 4, y + gameCore->getHeight() / 12);
 	glEnd();
 	glColor3ub(TEXT_COLOR);
 	drawStrokeText(y, buttonName.c_str());
@@ -36,7 +36,8 @@ void MainWindow::drawButton(int y, std::string buttonName)
 void MainWindow::refresh() {
 	glutPostRedisplay();
 }
-void MainWindow::reshape(int height, int width) {
+
+void MainWindow::reshape(int width, int height) {
 	gameCore->setHeight(height);
 	gameCore->setWidth(width);
 	glutPostRedisplay();
@@ -89,9 +90,9 @@ void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
 
 void MainWindow::drawMenu()
 {
-	drawButton(GLU_ORTO_HEIGHT / 6, "Start game");
-	drawButton(GLU_ORTO_HEIGHT / 2, "Credits");
-	drawButton(5 * GLU_ORTO_HEIGHT / 6, "Exit");
+	drawButton(gameCore->getHeight() / 6, "Start game");
+	drawButton(gameCore->getHeight() / 2, "Credits");
+	drawButton(5 * gameCore->getHeight() / 6, "Exit");
 }
 
 void MainWindow::display()
