@@ -26,11 +26,10 @@ void MainWindow::drawStrokeText(GLfloat y, const char *text)
 	glPopMatrix();
 }
 
-void MainWindow::drawButton(int y, std::string buttonName)
+void MainWindow::drawButton(int y, std::string buttonName, t_eButton button)
 {
 	int height = gameCore->getHeight();
 	int width = gameCore->getWidth();
-	t_eButton button = static_cast<t_eButton>((y - height / 3) * 3);
 	gameCore->isButtonPressed(button) ? glColor3ub(BUTTON_PRESSED_COLOR) :
 										glColor3ub(BUTTON_COLOR);
 	glBegin(GL_POLYGON);               //Border
@@ -68,8 +67,9 @@ void MainWindow::clickOnMenu(int keyCode, int keyState, int x, int y)
 		while (++i < 3)
 		{
 			y = height - y;
-			if (y > - height / 6 + i * 2 * height / 3 && y < height / 6 + i * 2 * height / 3) {
-				gameCore->setButtonPressed(static_cast<t_eButton>(i));
+			if (y > (1 + i) * height / 4 - height / 12 && y < (1 + i) * height / 4 + height / 12) {
+				printf("keyCode = %d, keyState = %d, x = %d, y = %d\n", keyCode, keyState, x, y);
+				gameCore->setButtonPressed(static_cast<t_eButton>(2 - i));
 				return;
 			}
 		}
@@ -96,14 +96,13 @@ void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
 			break;
 
 	}
-	printf("keyCode = %d, keyState = %d, x = %d, y = %d\n", keyCode, keyState, x, y);
 }
 
 void MainWindow::drawMenu()
 {
-	drawButton(gameCore->getHeight() / 3, "Exit");
-	drawButton(gameCore->getHeight(), "Credits");
-	drawButton(5 * gameCore->getHeight() / 3, "Start game");
+	drawButton(gameCore->getHeight() / 2, "Exit", EXIT);
+	drawButton(gameCore->getHeight(), "Credits", CREDITS);
+	drawButton(1.5 * gameCore->getHeight(), "Start game", START);
 }
 
 void MainWindow::display()

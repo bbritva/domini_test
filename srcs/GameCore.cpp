@@ -38,7 +38,7 @@ void GameCore::resetButtons() {
 
 void GameCore::setButtonPressed(t_eButton button) {
 	_stateChanged = true;
-	_buttonPressedMask |= (1 << button);
+	_buttonPressedMask |= (1 << (int)button);
 }
 
 void GameCore::setStateChanged(bool state) {

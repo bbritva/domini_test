@@ -11,7 +11,7 @@ private:
     int _windowDescriptor;
 
 	static void drawMenu();
-	static void drawButton(int y, std::string buttonName);
+	static void drawButton(int y, std::string buttonName, t_eButton button);
 	static void drawStrokeText(GLfloat y, const char *text);
 	static void clickOnMenu(int keyCode, int keyState, int x, int y);
 
