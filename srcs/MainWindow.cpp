@@ -9,9 +9,17 @@ MainWindow::~MainWindow() {
 
 void MainWindow::drawStrokeText(GLfloat y, const char *text)
 {
+	int height = gameCore->getHeight();
+	int width = gameCore->getWidth();
+	float scaleX = 1.5 * width / WINDOW_WIDTH;
+	float scaleY = 1.5 * height / WINDOW_HEIGHT;
 	glPushMatrix();
-	glTranslatef(gameCore->getWidth()/ 2, y, 0);
-	glScalef(1.5, 1.5, 1);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(0,GLU_ORTO_WIDTH,0,GLU_ORTO_HEIGHT);
+	glMatrixMode(GL_MODELVIEW);
+	glTranslatef( width - 35 * strlen(text) * scaleX, y, 0);
+	glScalef(scaleX, scaleY, 1);
 	glLineWidth(2);
 	for (int i = 0; text[i]; i++)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
@@ -20,17 +28,19 @@ void MainWindow::drawStrokeText(GLfloat y, const char *text)
 
 void MainWindow::drawButton(int y, std::string buttonName)
 {
-	t_eButton button = static_cast<t_eButton>((y - gameCore->getHeight() / 6) * 3);
+	int height = gameCore->getHeight();
+	int width = gameCore->getWidth();
+	t_eButton button = static_cast<t_eButton>((y - height / 3) * 3);
 	gameCore->isButtonPressed(button) ? glColor3ub(BUTTON_PRESSED_COLOR) :
 										glColor3ub(BUTTON_COLOR);
 	glBegin(GL_POLYGON);               //Border
-	glVertex2i(gameCore->getWidth() / 4, y + gameCore->getHeight() / 12);
-	glVertex2i(gameCore->getWidth() / 4, y - gameCore->getHeight() / 12);
-	glVertex2i(3 * gameCore->getWidth() / 4, y - gameCore->getHeight() / 12);
-	glVertex2i(3 * gameCore->getWidth() / 4, y + gameCore->getHeight() / 12);
+	glVertex2i(width / 2, y + height / 6);
+	glVertex2i(width / 2, y - height / 6);
+	glVertex2i(3 * width / 2, y - height / 6);
+	glVertex2i(3 * width / 2, y + height / 6);
 	glEnd();
 	glColor3ub(TEXT_COLOR);
-	drawStrokeText(y, buttonName.c_str());
+	drawStrokeText(y - height / 16, buttonName.c_str());
 }
 
 void MainWindow::refresh() {
@@ -41,23 +51,24 @@ void MainWindow::reshape(int width, int height) {
 	gameCore->setHeight(height);
 	gameCore->setWidth(width);
 	glutPostRedisplay();
+	std::cout << "w = " << width << ", h = " << height;
 }
 
 void MainWindow::clickOnMenu(int keyCode, int keyState, int x, int y)
 {
 	std::cout << "mouse 0\n";
-	x *= 2;
-	y *= 2;
+	int height = gameCore->getHeight();
+	int width = gameCore->getWidth();
 	if (keyCode != LEFT_MOUSE_BUTTON)
 		return;
-	if (!keyState && x > -600 && x < 600)
+	if (!keyState && x > width / 4 && x < 3 * width / 4)
 	{
 		std::cout << "mouse 1\n";
 		int i = -1;
 		while (++i < 3)
 		{
-			y -= 500;
-			if (y > -150 + i * 500 && y < 150 + i * 500) {
+			y = height - y;
+			if (y > - height / 6 + i * 2 * height / 3 && y < height / 6 + i * 2 * height / 3) {
 				gameCore->setButtonPressed(static_cast<t_eButton>(i));
 				return;
 			}
@@ -90,9 +101,9 @@ void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
 
 void MainWindow::drawMenu()
 {
-	drawButton(gameCore->getHeight() / 6, "Start game");
-	drawButton(gameCore->getHeight() / 2, "Credits");
-	drawButton(5 * gameCore->getHeight() / 6, "Exit");
+	drawButton(gameCore->getHeight() / 3, "Exit");
+	drawButton(gameCore->getHeight(), "Credits");
+	drawButton(5 * gameCore->getHeight() / 3, "Start game");
 }
 
 void MainWindow::display()
