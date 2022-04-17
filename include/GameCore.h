@@ -10,6 +10,7 @@ private:
 	int			_width;
 	int			_windowDescriptor;
 	GameField	_gameField;
+	AIPlayer	_aIPlayer;
 
 public:
 	bool isStateChanged() const;

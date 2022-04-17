@@ -16,7 +16,7 @@
 #include "typedefs.h"
 #include "GameField.h"
 #include "MainWindow.h"
-#include "Player.h"
+#include "AIPlayer.h"
 #include "GameCore.h"
 
 void addEventHandlers();
