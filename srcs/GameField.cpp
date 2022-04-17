@@ -43,3 +43,14 @@ t_eCell GameField::getCell(int i, int j) {
 		return _field[i][j];
 	return CELL_WRONG;
 }
+
+void GameField::showPossibilities(int i, int j) {
+	if (i > 0 && _field[i - 1][j] == CELL_EMPTY)
+		_field[i - 1][j] = CELL_POSSIBLE_PLAYER_1;
+	if (i < FIELD_SIZE - 1 && _field[i + 1][j] == CELL_EMPTY)
+		_field[i + 1][j] = CELL_POSSIBLE_PLAYER_1;
+	if (j > 0 && _field[i][j - 1] == CELL_EMPTY)
+		_field[i][j - 1] = CELL_POSSIBLE_PLAYER_1;
+	if (j < FIELD_SIZE - 1 && _field[i][j + 1] == CELL_EMPTY)
+		_field[i][j + 1] = CELL_POSSIBLE_PLAYER_1;
+}

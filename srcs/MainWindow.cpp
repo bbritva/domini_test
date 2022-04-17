@@ -31,9 +31,9 @@ void MainWindow::drawChecker(int i, int j, t_eCell cell)
 	float cx = (2.0f * gameCore->getWidth() / FIELD_SIZE) * (0.5f + i);
 	float cy = (2.0f * gameCore->getHeight() / FIELD_SIZE) * (0.5f + FIELD_SIZE - j - 1);
 	float r = 0.8f * gameCore->getWidth() / FIELD_SIZE;
-	cell == CELL_PLAYER_1 ? glColor3ub(COLOR_CHECKER_PLAYER_1) :
-							glColor3ub(COLOR_CHECKER_PLAYER_2);
-	glBegin(GL_POLYGON);
+	cell == CELL_PLAYER_1  || cell == CELL_POSSIBLE_PLAYER_1 ? glColor3ub(COLOR_CHECKER_PLAYER_1) :
+			glColor3ub(COLOR_CHECKER_PLAYER_2);
+	glBegin(cell != CELL_POSSIBLE_PLAYER_1 ? GL_POLYGON : GL_LINE_LOOP);
 	for(int k = 0; k < 32; k++)
 	{
 		float theta = 2.0f * 3.1415926f * k / 32;
@@ -102,27 +102,11 @@ void MainWindow::clickOnGameField(int keyCode, int keyState, int x, int y)
 	int width = gameCore->getWidth();
 	if (keyCode != LEFT_MOUSE_BUTTON || keyState)
 		return;
-	t_eCell cell = gameCore->getCell(y * FIELD_SIZE / height, x * FIELD_SIZE / width);
-	std::cout << "cell = " << cell << "\n";
-	std::cout << "key = " << keyState << ", " << keyCode << "\n";
-//	if (x > width / 4 && x < 3 * width / 4)
-//	{
-//		int i = -1;
-//		while (++i < 3)
-//		{
-//			y = height - y;
-//			if (y > (1 + i) * height / 4 - height / 12 && y < (1 + i) * height / 4 + height / 12) {
-//				t_eButton button = static_cast<t_eButton>(2 - i);
-//				if (!keyState)
-//					gameCore->setButtonPressed(button);
-//				else {
-//					gameCore->setButtonReleased(button);
-//				}
-//				return;
-//			}
-//		}
-//	}
-//	gameCore->resetButtons();
+	t_eCell cell = gameCore->getCell(x * FIELD_SIZE / width, y * FIELD_SIZE / height);
+	if (cell != CELL_PLAYER_1)
+		return;
+	if (gameCore->getState() == STATE_GAME)
+		gameCore->showPossibilities(x * FIELD_SIZE / width, y * FIELD_SIZE / height);
 }
 
 void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
@@ -181,9 +165,8 @@ void MainWindow::display()
 				drawMenu();
 				break;
 			case STATE_GAME:
-				drawGameField();
-				break;
 			case STATE_GAME_MOVE_POSSIBILITIES:
+				drawGameField();
 				break;
 			case STATE_END_GAME:
 				break;

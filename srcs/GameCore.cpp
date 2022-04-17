@@ -90,3 +90,8 @@ void GameCore::setWindowDescriptor(int windowDescriptor) {
 t_eCell GameCore::getCell(int i, int j) {
 	return _gameField.getCell(i,j);
 }
+
+void GameCore::showPossibilities(int i, int j) {
+	_gameField.showPossibilities(i,j);
+	setState(STATE_GAME_MOVE_POSSIBILITIES);
+}

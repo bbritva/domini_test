@@ -8,6 +8,8 @@ public:
 	void moveCell(int i, int j, t_eDirection direction);
 	t_eCell getCell(int i, int j);
 
+	void showPossibilities(int i, int j);
+
 private:
 	t_eCell _field[FIELD_SIZE][FIELD_SIZE];
 };

@@ -38,6 +38,8 @@ public:
 	void setWindowDescriptor(int windowDescriptor);
 
 	t_eCell getCell(int i, int j);
+
+	void showPossibilities(int i, int j);
 };
 
 

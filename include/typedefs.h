@@ -25,7 +25,9 @@ typedef enum e_Direction {
 typedef enum e_Cell {
 	CELL_EMPTY,
 	CELL_PLAYER_1,
+	CELL_POSSIBLE_PLAYER_1,
 	CELL_PLAYER_2,
+	CELL_POSSIBLE_PLAYER_2,
 	CELL_WRONG
 } t_eCell;
 
