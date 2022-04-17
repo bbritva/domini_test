@@ -1,6 +1,5 @@
 #ifndef DOMINI_TEST_GAMECORE_H
 #define DOMINI_TEST_GAMECORE_H
-#include "main.h"
 
 class GameCore {
 private:
@@ -10,6 +9,7 @@ private:
 	int			_height;
 	int			_width;
 	int			_windowDescriptor;
+	GameField	_gameField;
 
 public:
 	bool isStateChanged() const;
@@ -36,6 +36,8 @@ public:
 	void setButtonReleased(t_eButton button);
 
 	void setWindowDescriptor(int windowDescriptor);
+
+	t_eCell getCell(int i, int j);
 };
 
 

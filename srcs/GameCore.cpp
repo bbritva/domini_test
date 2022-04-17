@@ -1,4 +1,4 @@
-#include "GameCore.h"
+#include "main.h"
 
 GameCore::GameCore() {
 	_state = STATE_MENU;
@@ -27,7 +27,6 @@ bool GameCore::isStateChanged() const {
 }
 
 bool GameCore::isButtonPressed(t_eButton button) const {
-	std::cout << "button mask = " << (int)_buttonPressedMask << "\n";
 	return _buttonPressedMask & (1 << button);
 }
 
@@ -86,4 +85,8 @@ void GameCore::setButtonReleased(t_eButton button) {
 void GameCore::setWindowDescriptor(int windowDescriptor) {
 	_windowDescriptor = windowDescriptor;
 
+}
+
+t_eCell GameCore::getCell(int i, int j) {
+	return _gameField.getCell(i,j);
 }

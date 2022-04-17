@@ -15,4 +15,32 @@ typedef enum e_Button {
 	EXIT
 } t_eButton;
 
+typedef enum e_Direction {
+	DIRECTION_UP,
+	DIRECTION_DOWN,
+	DIRECTION_LEFT,
+	DIRECTION_RIGHT
+} t_eDirection;
+
+typedef enum e_Cell {
+	CELL_EMPTY,
+	CELL_PLAYER_1,
+	CELL_PLAYER_2
+} t_eCell;
+
+#define GAME_NAME "Domini Corners"
+#define COLOR_BUTTON 255,0,0
+#define COLOR_BUTTON_PRESSED 0,255,0
+#define COLOR_CELL_WHITE 50,50,50
+#define COLOR_CELL_BLACK 150,150,150
+#define COLOR_TEXT 0,0,0
+#define COLOR_CHECKER_PLAYER_1 200,0,0
+#define COLOR_CHECKER_PLAYER_2 0,200,0
+#define WINDOW_HEIGHT 1200
+#define WINDOW_WIDTH 1200
+#define GLU_ORTO_HEIGHT 2400
+#define GLU_ORTO_WIDTH 2400
+#define LEFT_MOUSE_BUTTON 0
+#define FIELD_SIZE 8
+
 #endif //DOMINI_TEST_TYPEDEFS_H

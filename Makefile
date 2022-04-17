@@ -1,22 +1,11 @@
 NAME		=	domini_corner
-CPP			=	g++ $(CFLAGS)
+CPP			=	g++ $(FLAGS)
 RM			=	rm -f
-CFLAGS		=	-Wall -Wextra -Werror -o2 -std=c++14 -Iinclude/ -lglut -lGL -lGLU -lm
-COMM_PATH	=	commands/
-COMM_SRCS	=
-
-CHNL_PATH	=	
-CHNL_SRCS	=
-SRVR_PATH	=	
-SRVR_SRCS	=
-SRCS		=	$(addprefix srcs/, main.cpp MainWindow.cpp GameCore.cpp\
-					$(addprefix $(COMM_PATH), $(COMM_SRCS)) \
-					$(addprefix $(CHNL_PATH), $(CHNL_SRCS)) \
-					$(addprefix $(SRVR_PATH), $(SRVR_SRCS)) \
+FLAGS		=	-Wall -Wextra -Werror -g3 -std=c++14 -Iinclude/ -lglut -lGL -lGLU -lm
+SRCS		=	$(addprefix srcs/, main.cpp MainWindow.cpp GameField.cpp GameCore.cpp\
+				Player.cpp \
 				)
-			
 OBJS		=	$(SRCS:.cpp=.o)
-HDRS		=	
 CYAN		=	\x1B[36m
 MAGENTA		=	\x1B[35m
 GREEN		=	\033[92m
@@ -24,7 +13,7 @@ ENDCOLOR	=	\x1B[0m
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS) include/main.h
+$(NAME):	$(OBJS)
 			$(CPP) $(OBJS) -o $(NAME)
 			echo "${GREEN}"$(NAME)" is compiled${ENDCOLOR}"
 
@@ -38,7 +27,7 @@ fclean:		clean
 
 re:			fclean all
 
-%.o:		%.cpp $(HDRS)
+%.o:		%.cpp
 			$(CPP) -c $< -o $@
 			echo $@ compilled
 
@@ -47,4 +36,4 @@ run:		all
 
 .PHONY:		all clean fclean re so bonus norm
 
-.SILENT:
+#.SILENT:
