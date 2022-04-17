@@ -1,7 +1,6 @@
 #include "main.h"
 
 GameField::GameField() {
-	std::cout << "gamefield created\n";
 	for (int i = 0; i < FIELD_SIZE; ++i) {
 		for (int j = 0; j < FIELD_SIZE; ++j) {
 			if (i < 3 && j < 3)
@@ -18,26 +17,6 @@ GameField::~GameField() {
 
 }
 
-void GameField::moveCell(int i, int j, t_eDirection direction) {
-	t_eCell cell = _field[i][j];
-	_field[i][j] = CELL_EMPTY;
-	switch (direction) {
-		case DIRECTION_UP:
-			_field[i - 1][j] = cell;
-			break;
-		case DIRECTION_DOWN:
-			_field[i + 1][j] = cell;
-			break;
-		case DIRECTION_LEFT:
-			_field[i][j - 1] = cell;
-			break;
-		case DIRECTION_RIGHT:
-			_field[i][j + 1] = cell;
-			break;
-	}
-
-}
-
 t_eCell GameField::getCell(int i, int j) {
 	if (i < FIELD_SIZE && j < FIELD_SIZE)
 		return _field[i][j];
@@ -45,6 +24,8 @@ t_eCell GameField::getCell(int i, int j) {
 }
 
 void GameField::showPossibilities(int i, int j) {
+	selectedCell[0] = i;
+	selectedCell[1] = j;
 	if (i > 0 && _field[i - 1][j] == CELL_EMPTY)
 		_field[i - 1][j] = CELL_POSSIBLE_PLAYER_1;
 	if (i < FIELD_SIZE - 1 && _field[i + 1][j] == CELL_EMPTY)
@@ -53,4 +34,19 @@ void GameField::showPossibilities(int i, int j) {
 		_field[i][j - 1] = CELL_POSSIBLE_PLAYER_1;
 	if (j < FIELD_SIZE - 1 && _field[i][j + 1] == CELL_EMPTY)
 		_field[i][j + 1] = CELL_POSSIBLE_PLAYER_1;
+}
+
+void GameField::dropPossibilities() {
+	for (int i = 0; i < FIELD_SIZE; ++i) {
+		for (int j = 0; j < FIELD_SIZE; ++j) {
+			if (_field[i][j] == CELL_POSSIBLE_PLAYER_1)
+				_field[i][j] = CELL_EMPTY;
+		}
+	}
+}
+
+void GameField::doMove(int i, int j) {
+	_field[selectedCell[0]][selectedCell[1]] = CELL_EMPTY;
+	_field[i][j] = CELL_PLAYER_1;
+	dropPossibilities();
 }

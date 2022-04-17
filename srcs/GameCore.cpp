@@ -95,3 +95,8 @@ void GameCore::showPossibilities(int i, int j) {
 	_gameField.showPossibilities(i,j);
 	setState(STATE_GAME_MOVE_POSSIBILITIES);
 }
+
+void GameCore::doMove(int i, int j) {
+	_gameField.doMove(i,j);
+	setState(STATE_GAME);
+}

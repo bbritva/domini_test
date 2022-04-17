@@ -103,10 +103,10 @@ void MainWindow::clickOnGameField(int keyCode, int keyState, int x, int y)
 	if (keyCode != LEFT_MOUSE_BUTTON || keyState)
 		return;
 	t_eCell cell = gameCore->getCell(x * FIELD_SIZE / width, y * FIELD_SIZE / height);
-	if (cell != CELL_PLAYER_1)
-		return;
-	if (gameCore->getState() == STATE_GAME)
+	if (gameCore->getState() == STATE_GAME && cell == CELL_PLAYER_1)
 		gameCore->showPossibilities(x * FIELD_SIZE / width, y * FIELD_SIZE / height);
+	else if (gameCore->getState() == STATE_GAME_MOVE_POSSIBILITIES && cell == CELL_POSSIBLE_PLAYER_1)
+		gameCore->doMove(x * FIELD_SIZE / width, y * FIELD_SIZE / height);
 }
 
 void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
@@ -116,9 +116,8 @@ void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
 			clickOnMenu(keyCode, keyState, x, y);
 			break;
 		case STATE_GAME:
-			clickOnGameField(keyCode, keyState, x, y);
-			break;
 		case STATE_GAME_MOVE_POSSIBILITIES:
+			clickOnGameField(keyCode, keyState, x, y);
 			break;
 		case STATE_END_GAME:
 			break;

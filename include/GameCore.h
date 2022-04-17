@@ -40,6 +40,8 @@ public:
 	t_eCell getCell(int i, int j);
 
 	void showPossibilities(int i, int j);
+
+	void doMove(int i, int j);
 };
 
 
