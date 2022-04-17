@@ -16,6 +16,7 @@ private:
 	static void drawButton(int y, std::string buttonName, t_eButton button);
 	static void drawStrokeText(GLfloat y, const char *text);
 	static void clickOnMenu(int keyCode, int keyState, int x, int y);
+	static void clickOnGameField(int keyCode, int keyState, int x, int y);
 
 	MainWindow();
 	~MainWindow();

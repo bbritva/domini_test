@@ -39,5 +39,7 @@ void GameField::moveCell(int i, int j, t_eDirection direction) {
 }
 
 t_eCell GameField::getCell(int i, int j) {
-	return _field[i][j];
+	if (i < FIELD_SIZE && j < FIELD_SIZE)
+		return _field[i][j];
+	return CELL_WRONG;
 }
