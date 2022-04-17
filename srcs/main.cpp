@@ -7,6 +7,8 @@ int main(int argc, char **argv)
 	int windowDescriptor;
 
 	windowDescriptor = init(&argc, argv);
+	if (!windowDescriptor)
+		return 0;
 	addEventHandlers();
 	glutMainLoop();
 	glutDestroyWindow(windowDescriptor);
@@ -31,6 +33,7 @@ int init(int *argc, char **argv)
 	glutInitWindowPosition(0, 0);
 	glutInitWindowSize(gameCore->getWidth(), gameCore->getHeight());
 	int windowDescriptor = glutCreateWindow(GAME_NAME);
+	gameCore->setWindowDescriptor(windowDescriptor);
 	glClearColor(0.0,0.0,0.0,0);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();

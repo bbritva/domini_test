@@ -55,42 +55,41 @@ void MainWindow::reshape(int width, int height) {
 
 void MainWindow::clickOnMenu(int keyCode, int keyState, int x, int y)
 {
-	std::cout << "mouse 0\n";
 	int height = gameCore->getHeight();
 	int width = gameCore->getWidth();
 	if (keyCode != LEFT_MOUSE_BUTTON)
 		return;
-	if (!keyState && x > width / 4 && x < 3 * width / 4)
+	if (x > width / 4 && x < 3 * width / 4)
 	{
-		std::cout << "mouse 1\n";
 		int i = -1;
 		while (++i < 3)
 		{
 			y = height - y;
 			if (y > (1 + i) * height / 4 - height / 12 && y < (1 + i) * height / 4 + height / 12) {
-				printf("keyCode = %d, keyState = %d, x = %d, y = %d\n", keyCode, keyState, x, y);
-				gameCore->setButtonPressed(static_cast<t_eButton>(2 - i));
+				t_eButton button = static_cast<t_eButton>(2 - i);
+				if (!keyState)
+					gameCore->setButtonPressed(button);
+				else {
+					gameCore->resetButtons();
+					gameCore->setButtonReleased(button);
+				}
 				return;
 			}
 		}
 	}
-	else
-		gameCore->resetButtons();
 }
 void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
 {
 //	gameCore->setStateChanged(true);
 	switch (gameCore->getState()) {
-		case MENU:
+		case STATE_MENU:
 			clickOnMenu(keyCode, keyState, x, y);
 			break;
-		case GAME:
+		case STATE_GAME:
 			break;
-		case GAME_MOVE_POSSIBILITIES:
+		case STATE_GAME_MOVE_POSSIBILITIES:
 			break;
-		case GAME_MOVING:
-			break;
-		case END_GAME:
+		case STATE_END_GAME:
 			break;
 		default:
 			break;
@@ -112,16 +111,14 @@ void MainWindow::display()
 		std::cout << "redraw\n";
 		glClear(GL_COLOR_BUFFER_BIT);
 		switch (gameCore->getState()) {
-			case MENU:
+			case STATE_MENU:
 				drawMenu();
 				break;
-			case GAME:
+			case STATE_GAME:
 				break;
-			case GAME_MOVE_POSSIBILITIES:
+			case STATE_GAME_MOVE_POSSIBILITIES:
 				break;
-			case GAME_MOVING:
-				break;
-			case END_GAME:
+			case STATE_END_GAME:
 				break;
 			default:
 				break;

@@ -1,7 +1,7 @@
 #include "GameCore.h"
 
 GameCore::GameCore() {
-	_state = MENU;
+	_state = STATE_MENU;
 	_stateChanged = true;
 	_height = WINDOW_HEIGHT;
 	_width = WINDOW_WIDTH;
@@ -65,4 +65,25 @@ void GameCore::setWidth(int width)
 {
 	_stateChanged = true;
 	_width = width;
+}
+
+void GameCore::setButtonReleased(t_eButton button) {
+	switch (button) {
+		case START:
+			setState(STATE_GAME);
+			break;
+		case CREDITS:
+			setState(STATE_CREDITS);
+			break;
+		case EXIT:
+			glutDestroyWindow(_windowDescriptor);
+			break;
+		default:
+			break;
+	}
+}
+
+void GameCore::setWindowDescriptor(int windowDescriptor) {
+	_windowDescriptor = windowDescriptor;
+
 }

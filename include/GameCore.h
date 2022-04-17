@@ -9,6 +9,7 @@ private:
 	uint8_t		_buttonPressedMask;
 	int			_height;
 	int			_width;
+	int			_windowDescriptor;
 
 public:
 	bool isStateChanged() const;
@@ -31,6 +32,10 @@ public:
 	void setWidth(int width);
 
 	~GameCore();
+
+	void setButtonReleased(t_eButton button);
+
+	void setWindowDescriptor(int windowDescriptor);
 };
 
 
