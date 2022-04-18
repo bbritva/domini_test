@@ -86,7 +86,7 @@ void MainWindow::clickOnMenu(int keyCode, int keyState, int x, int y)
 				t_eButton button = static_cast<t_eButton>(2 - i);
 				if (!keyState)
 					gameCore->setButtonPressed(button);
-				else {
+				else if (gameCore->isButtonPressed(button)){
 					gameCore->setButtonReleased(button);
 				}
 				return;
