@@ -49,8 +49,8 @@ void GameField::doMove(int i, int j) {
 
 bool GameField::isWin(e_Player player)
 {
-	int i_start = (player == PLAYER_HUMAN) ? FIELD_SIZE - 4 : 0;
-	int j_start = (player == PLAYER_HUMAN) ? FIELD_SIZE - 4 : 0;
+	int i_start = (player == PLAYER_HUMAN) ? FIELD_SIZE - 3 : 0;
+	int j_start = (player == PLAYER_HUMAN) ? FIELD_SIZE - 3 : 0;
 	t_eCell cell = (player == PLAYER_HUMAN) ? CELL_PLAYER_HUMAN : CELL_PLAYER_AI;
 	for (int i = 0; i < 3; ++i)
 	{
@@ -66,7 +66,7 @@ bool GameField::isWin(e_Player player)
 bool GameField::isRowFilled(e_Cell cell, int i)
 {
 	int count = 0;
-	for (int j = 0; j < 3; ++j)
+	for (int j = 0; j < FIELD_SIZE; ++j)
 	{
 		if (_field[i][j] == cell)
 			count++;

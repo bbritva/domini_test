@@ -100,16 +100,16 @@ void GameCore::doMove(int i, int j) {
 	_gameField.doMove(i,j);
 	if (_gameField.isWin(PLAYER_HUMAN))
 	{
-		setState(STATE_END_GAME);
 		setWinner(PLAYER_HUMAN);
+		setState(STATE_END_GAME);
 		return;
 	}
 	doAIMove();
 	gameCore->setStateChanged(true);
 	if (_gameField.isWin(PLAYER_AI))
 	{
-		setState(STATE_END_GAME);
 		setWinner(PLAYER_AI);
+		setState(STATE_END_GAME);
 		return;
 	}
 	setState(STATE_GAME);

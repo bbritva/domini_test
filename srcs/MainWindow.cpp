@@ -202,7 +202,7 @@ void MainWindow::drawCells() {
 
 void MainWindow::drawResult()
 {
-	const char *text = (gameCore->getWinner() == PLAYER_AI) ? "YOU WIN!!!!!" : "YOU LOSE!!!!!";
+	const char *text = (gameCore->getWinner() == PLAYER_HUMAN) ? "YOU WIN!!!!!" : "YOU LOSE!!!!!";
 	int height = gameCore->getHeight();
 	int width = gameCore->getWidth();
 	float scaleX = 3.5f * width / WINDOW_WIDTH;
@@ -215,9 +215,11 @@ void MainWindow::drawResult()
 	glTranslatef( 0, height, 0);
 	glScalef(scaleX, scaleY, 1);
 	glLineWidth(4);
+	(gameCore->getWinner() == PLAYER_HUMAN) ? glColor3ub(COLOR_WIN) : glColor3ub(COLOR_LOSE);
 	for (int i = 0; text[i]; i++)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
-	glPopMatrix();}
+	glPopMatrix();
+}
 
 void MainWindow::clickOnEndGame(int keyCode, int keyState)
 {

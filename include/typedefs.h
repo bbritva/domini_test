@@ -36,6 +36,8 @@ typedef enum e_Cell {
 #define COLOR_TEXT 0,0,0
 #define COLOR_CHECKER_PLAYER_1 200,0,0
 #define COLOR_CHECKER_PLAYER_2 0,200,0
+#define COLOR_WIN 0,200,0
+#define COLOR_LOSE 200,0,0
 #define WINDOW_HEIGHT 1200
 #define WINDOW_WIDTH 1200
 #define GLU_ORTO_HEIGHT 2400
