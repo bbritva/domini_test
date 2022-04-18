@@ -28,9 +28,11 @@ void MainWindow::drawStrokeText(GLfloat y, const char *text)
 
 void MainWindow::drawChecker(int i, int j, t_eCell cell)
 {
-	float cx = (2.0f * gameCore->getWidth() / FIELD_SIZE) * (0.5f + i);
-	float cy = (2.0f * gameCore->getHeight() / FIELD_SIZE) * (0.5f + FIELD_SIZE - j - 1);
-	float r = 0.8f * gameCore->getWidth() / FIELD_SIZE;
+	int height = gameCore->getHeight();
+	int width = gameCore->getWidth();
+	float cx = (2.0f * width / FIELD_SIZE) * (0.5f + i);
+	float cy = (2.0f * height / FIELD_SIZE) * (0.5f + FIELD_SIZE - j - 1);
+	float r = 0.8f * ((height > width) ? width : height) / FIELD_SIZE;
 	cell == CELL_PLAYER_HUMAN || cell == CELL_POSSIBLE_PLAYER_1 ? glColor3ub(COLOR_CHECKER_PLAYER_1) :
 	glColor3ub(COLOR_CHECKER_PLAYER_2);
 	glBegin(cell != CELL_POSSIBLE_PLAYER_1 ? GL_POLYGON : GL_LINE_LOOP);

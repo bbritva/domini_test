@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 	addEventHandlers();
 	glutMainLoop();
 	glutDestroyWindow(windowDescriptor);
+	delete gameCore;
 	return 0;
 }
 

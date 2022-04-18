@@ -17,6 +17,15 @@ void AIPlayer::doMove(GameField *field)
 			return;
 		getNextChecker();
 	}
+	i_selected = 3;
+	j_selected = 3;
+	getNextChecker();
+	while (i_selected != FIELD_SIZE)
+	{
+		if (doBadMove())
+			return;
+		getNextChecker();
+	}
 	i_selected = 0;
 	j_selected = 0;
 	getNextChecker();
