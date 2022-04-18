@@ -3,8 +3,8 @@
 
 class AIPlayer {
 private:
-	int i;
-	int j;
+	int i_selected;
+	int j_selected;
 	GameField *_field;
 
 public:
