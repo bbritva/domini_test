@@ -69,7 +69,6 @@ void MainWindow::reshape(int width, int height) {
 	gameCore->setHeight(height);
 	gameCore->setWidth(width);
 	glutPostRedisplay();
-	std::cout << "w = " << width << ", h = " << height;
 }
 
 void MainWindow::clickOnMenu(int keyCode, int keyState, int x, int y)
@@ -161,7 +160,6 @@ void MainWindow::display()
 {
 	if (gameCore->isStateChanged()) {
 		gameCore->setStateChanged(false);
-		std::cout << "redraw\n";
 		glClear(GL_COLOR_BUFFER_BIT);
 		switch (gameCore->getState()) {
 			case STATE_MENU:
