@@ -11,14 +11,14 @@ void MainWindow::drawStrokeText(GLfloat y, const char *text)
 {
 	int height = gameCore->getHeight();
 	int width = gameCore->getWidth();
-	float scaleX = 1.5 * width / WINDOW_WIDTH;
-	float scaleY = 1.5 * height / WINDOW_HEIGHT;
+	float scaleX = 1.5f * width / WINDOW_WIDTH;
+	float scaleY = 1.5f * height / WINDOW_HEIGHT;
 	glPushMatrix();
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(0,GLU_ORTO_WIDTH,0,GLU_ORTO_HEIGHT);
 	glMatrixMode(GL_MODELVIEW);
-	glTranslatef( width - 35 * strlen(text) * scaleX, y, 0);
+	glTranslatef( width - 35.0f * strlen(text) * scaleX, y, 0);
 	glScalef(scaleX, scaleY, 1);
 	glLineWidth(2);
 	for (int i = 0; text[i]; i++)
@@ -120,6 +120,7 @@ void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
 			clickOnGameField(keyCode, keyState, x, y);
 			break;
 		case STATE_END_GAME:
+			clickOnEndGame();
 			break;
 		default:
 			break;
@@ -168,6 +169,8 @@ void MainWindow::display()
 				drawGameField();
 				break;
 			case STATE_END_GAME:
+				drawGameField();
+				drawResult();
 				break;
 			default:
 				break;
@@ -195,4 +198,29 @@ void MainWindow::drawCells() {
 		}
 	}
 
+}
+
+void MainWindow::drawResult()
+{
+	const char *text = (gameCore->getWinner() == PLAYER_AI) ? "YOU WIN!!!!!" : "YOU LOSE!!!!!";
+	int height = gameCore->getHeight();
+	int width = gameCore->getWidth();
+	float scaleX = 3.5f * width / WINDOW_WIDTH;
+	float scaleY = 3.5f * height / WINDOW_HEIGHT;
+	glPushMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(0,GLU_ORTO_WIDTH,0,GLU_ORTO_HEIGHT);
+	glMatrixMode(GL_MODELVIEW);
+	glTranslatef( 0, height, 0);
+	glScalef(scaleX, scaleY, 1);
+	glLineWidth(4);
+	for (int i = 0; text[i]; i++)
+		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
+	glPopMatrix();}
+
+void MainWindow::clickOnEndGame()
+{
+	gameCore->setState(STATE_MENU);
+	gameCore->restartGame();
 }

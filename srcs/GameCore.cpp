@@ -99,16 +99,39 @@ void GameCore::showPossibilities(int i, int j) {
 void GameCore::doMove(int i, int j) {
 	_gameField.doMove(i,j);
 	if (_gameField.isWin(PLAYER_HUMAN))
+	{
 		setState(STATE_END_GAME);
+		setWinner(PLAYER_HUMAN);
+		return;
+	}
 	doAIMove();
 	gameCore->setStateChanged(true);
 	if (_gameField.isWin(PLAYER_AI))
+	{
 		setState(STATE_END_GAME);
+		setWinner(PLAYER_AI);
+		return;
+	}
 	setState(STATE_GAME);
+}
+
+t_ePlayer GameCore::getWinner() const
+{
+	return _winner;
 }
 
 void GameCore::doAIMove()
 {
 	_aIPlayer.doMove(&_gameField);
 
+}
+
+void GameCore::setWinner(e_Player player)
+{
+	_winner = player;
+}
+
+void GameCore::restartGame()
+{
+	_gameField.restartGame();
 }

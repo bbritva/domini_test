@@ -11,6 +11,7 @@ private:
 	int			_windowDescriptor;
 	GameField	_gameField;
 	AIPlayer	_aIPlayer;
+	t_ePlayer	_winner;
 
 public:
 	bool isStateChanged() const;
@@ -45,6 +46,12 @@ public:
 	void doMove(int i, int j);
 
 	void doAIMove();
+
+	void setWinner(e_Player player);
+
+	t_ePlayer getWinner() const;
+
+	void restartGame();
 };
 
 

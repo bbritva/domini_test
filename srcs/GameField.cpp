@@ -1,16 +1,7 @@
 #include "main.h"
 
 GameField::GameField() {
-	for (int i = 0; i < FIELD_SIZE; ++i) {
-		for (int j = 0; j < FIELD_SIZE; ++j) {
-			if (i < 3 && j < 3)
-				_field[i][j] = CELL_PLAYER_HUMAN;
-			else if (i >= FIELD_SIZE - 3 && j >= FIELD_SIZE - 3)
-				_field[i][j] = CELL_PLAYER_AI;
-			else
-				_field[i][j] = CELL_EMPTY;
-		}
-	}
+	restartGame();
 }
 
 GameField::~GameField() {
@@ -81,4 +72,18 @@ bool GameField::isRowFilled(e_Cell cell, int i)
 			count++;
 	}
 	return count > 2;
+}
+
+void GameField::restartGame()
+{
+	for (int i = 0; i < FIELD_SIZE; ++i) {
+		for (int j = 0; j < FIELD_SIZE; ++j) {
+			if (i < 3 && j < 3)
+				_field[i][j] = CELL_PLAYER_HUMAN;
+			else if (i >= FIELD_SIZE - 3 && j >= FIELD_SIZE - 3)
+				_field[i][j] = CELL_PLAYER_AI;
+			else
+				_field[i][j] = CELL_EMPTY;
+		}
+	}
 }

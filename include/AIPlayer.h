@@ -12,11 +12,8 @@ public:
 	~AIPlayer();
 
 	void doMove(GameField *field);
-
 	void getNextChecker();
-
 	bool doGoodMove();
-
 	bool doBadMove();
 };
 

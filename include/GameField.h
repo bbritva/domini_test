@@ -16,6 +16,8 @@ public:
 
 	bool isRowFilled(e_Cell cell, int i);
 
+	void restartGame();
+
 private:
 	t_eCell	_field[FIELD_SIZE][FIELD_SIZE];
 	int		selectedCell[2];
