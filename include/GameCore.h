@@ -43,6 +43,8 @@ public:
 	void showPossibilities(int i, int j);
 
 	void doMove(int i, int j);
+
+	void doAIMove();
 };
 
 

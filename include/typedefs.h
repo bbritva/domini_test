@@ -15,19 +15,16 @@ typedef enum e_Button {
 	EXIT
 } t_eButton;
 
-typedef enum e_Direction {
-	DIRECTION_UP,
-	DIRECTION_DOWN,
-	DIRECTION_LEFT,
-	DIRECTION_RIGHT
-} t_eDirection;
+typedef enum e_Player {
+	PLAYER_HUMAN,
+	PLAYER_AI
+} t_ePlayer;
 
 typedef enum e_Cell {
 	CELL_EMPTY,
-	CELL_PLAYER_1,
+	CELL_PLAYER_HUMAN,
 	CELL_POSSIBLE_PLAYER_1,
-	CELL_PLAYER_2,
-	CELL_POSSIBLE_PLAYER_2,
+	CELL_PLAYER_AI,
 	CELL_WRONG
 } t_eCell;
 

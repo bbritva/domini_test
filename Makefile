@@ -3,7 +3,7 @@ CPP			=	g++ $(FLAGS)
 RM			=	rm -f
 FLAGS		=	-Wall -Wextra -Werror -g3 -std=c++14 -Iinclude/ -lglut -lGL -lGLU -lm
 SRCS		=	$(addprefix srcs/, main.cpp MainWindow.cpp GameField.cpp GameCore.cpp\
-				Player.cpp \
+				AIPlayer.cpp \
 				)
 OBJS		=	$(SRCS:.cpp=.o)
 CYAN		=	\x1B[36m

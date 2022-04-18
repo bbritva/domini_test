@@ -31,8 +31,8 @@ void MainWindow::drawChecker(int i, int j, t_eCell cell)
 	float cx = (2.0f * gameCore->getWidth() / FIELD_SIZE) * (0.5f + i);
 	float cy = (2.0f * gameCore->getHeight() / FIELD_SIZE) * (0.5f + FIELD_SIZE - j - 1);
 	float r = 0.8f * gameCore->getWidth() / FIELD_SIZE;
-	cell == CELL_PLAYER_1  || cell == CELL_POSSIBLE_PLAYER_1 ? glColor3ub(COLOR_CHECKER_PLAYER_1) :
-			glColor3ub(COLOR_CHECKER_PLAYER_2);
+	cell == CELL_PLAYER_HUMAN || cell == CELL_POSSIBLE_PLAYER_1 ? glColor3ub(COLOR_CHECKER_PLAYER_1) :
+	glColor3ub(COLOR_CHECKER_PLAYER_2);
 	glBegin(cell != CELL_POSSIBLE_PLAYER_1 ? GL_POLYGON : GL_LINE_LOOP);
 	for(int k = 0; k < 32; k++)
 	{
@@ -103,7 +103,7 @@ void MainWindow::clickOnGameField(int keyCode, int keyState, int x, int y)
 	if (keyCode != LEFT_MOUSE_BUTTON || keyState)
 		return;
 	t_eCell cell = gameCore->getCell(x * FIELD_SIZE / width, y * FIELD_SIZE / height);
-	if (gameCore->getState() == STATE_GAME && cell == CELL_PLAYER_1)
+	if (gameCore->getState() == STATE_GAME && cell == CELL_PLAYER_HUMAN)
 		gameCore->showPossibilities(x * FIELD_SIZE / width, y * FIELD_SIZE / height);
 	else if (gameCore->getState() == STATE_GAME_MOVE_POSSIBILITIES && cell == CELL_POSSIBLE_PLAYER_1)
 		gameCore->doMove(x * FIELD_SIZE / width, y * FIELD_SIZE / height);

@@ -98,5 +98,17 @@ void GameCore::showPossibilities(int i, int j) {
 
 void GameCore::doMove(int i, int j) {
 	_gameField.doMove(i,j);
+	if (_gameField.isWin(PLAYER_HUMAN))
+		setState(STATE_END_GAME);
+	doAIMove();
+	gameCore->setStateChanged(true);
+	if (_gameField.isWin(PLAYER_AI))
+		setState(STATE_END_GAME);
 	setState(STATE_GAME);
+}
+
+void GameCore::doAIMove()
+{
+	_aIPlayer.doMove(&_gameField);
+
 }
