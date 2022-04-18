@@ -20,7 +20,7 @@ void MainWindow::drawStrokeText(GLfloat y, const char *text)
 	glMatrixMode(GL_MODELVIEW);
 	glTranslatef( width - 35.0f * strlen(text) * scaleX, y, 0);
 	glScalef(scaleX, scaleY, 1);
-	glLineWidth(2);
+	glLineWidth(4);
 	for (int i = 0; text[i]; i++)
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
 	glPopMatrix();
@@ -120,6 +120,7 @@ void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
 			clickOnGameField(keyCode, keyState, x, y);
 			break;
 		case STATE_END_GAME:
+		case STATE_CREDITS:
 			clickOnEndGame(keyCode, keyState);
 			break;
 		default:
@@ -171,6 +172,9 @@ void MainWindow::display()
 			case STATE_END_GAME:
 				drawGameField();
 				drawResult();
+				break;
+			case STATE_CREDITS:
+				drawCredits();
 				break;
 			default:
 				break;
@@ -230,4 +234,12 @@ void MainWindow::clickOnEndGame(int keyCode, int keyState)
 		gameCore->setState(STATE_MENU);
 		gameCore->restartGame();
 	}
+}
+
+void MainWindow::drawCredits() {
+	drawStrokeText(3 * gameCore->getHeight() / 2, "t.me/brs_brtv");
+	drawStrokeText(5 * gameCore->getHeight() / 4, "+79161178385  ");
+	drawStrokeText(gameCore->getHeight(), "amgboris@ya.ru");
+	drawStrokeText(3 * gameCore->getHeight() / 4, "=)");
+
 }

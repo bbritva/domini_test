@@ -30,6 +30,8 @@ public:
 	static void drawResult();
 
 	static void clickOnEndGame(int keyCode, int keyState);
+
+	static void drawCredits();
 };
 
 
