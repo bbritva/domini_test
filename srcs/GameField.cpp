@@ -71,3 +71,14 @@ bool GameField::isWin(e_Player player)
 	}
 	return true;
 }
+
+bool GameField::isRowFilled(e_Cell cell, int i)
+{
+	int count = 0;
+	for (int j = 0; j < 3; ++j)
+	{
+		if (_field[i][j] == cell)
+			count++;
+	}
+	return count > 2;
+}

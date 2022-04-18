@@ -14,6 +14,8 @@ public:
 
 	bool isWin(e_Player player);
 
+	bool isRowFilled(e_Cell cell, int i);
+
 private:
 	t_eCell	_field[FIELD_SIZE][FIELD_SIZE];
 	int		selectedCell[2];

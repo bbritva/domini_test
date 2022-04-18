@@ -43,9 +43,8 @@ void AIPlayer::getNextChecker()
 
 bool AIPlayer::doGoodMove()
 {
-	if (i_selected == 0)
-		std::cout << "beep\n";
-	if (i_selected > 0 && _field->getCell(i_selected - 1, j_selected) == CELL_EMPTY)
+	if (i_selected > 0 && _field->getCell(i_selected - 1, j_selected) == CELL_EMPTY &&
+		!_field->isRowFilled(CELL_PLAYER_AI, i_selected - 1))
 	{
 		_field->setCell(i_selected - 1, j_selected, CELL_PLAYER_AI);
 		_field->setCell(i_selected, j_selected, CELL_EMPTY);
