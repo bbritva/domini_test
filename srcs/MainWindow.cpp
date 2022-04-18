@@ -120,7 +120,7 @@ void MainWindow::mouseClick(int keyCode, int keyState, int x, int y)
 			clickOnGameField(keyCode, keyState, x, y);
 			break;
 		case STATE_END_GAME:
-			clickOnEndGame();
+			clickOnEndGame(keyCode, keyState);
 			break;
 		default:
 			break;
@@ -219,8 +219,13 @@ void MainWindow::drawResult()
 		glutStrokeCharacter(GLUT_STROKE_ROMAN, text[i]);
 	glPopMatrix();}
 
-void MainWindow::clickOnEndGame()
+void MainWindow::clickOnEndGame(int keyCode, int keyState)
 {
-	gameCore->setState(STATE_MENU);
-	gameCore->restartGame();
+	if (keyCode != LEFT_MOUSE_BUTTON)
+		return;
+	if (!keyState)
+	{
+		gameCore->setState(STATE_MENU);
+		gameCore->restartGame();
+	}
 }

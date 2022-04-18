@@ -134,4 +134,5 @@ void GameCore::setWinner(e_Player player)
 void GameCore::restartGame()
 {
 	_gameField.restartGame();
+	resetButtons();
 }

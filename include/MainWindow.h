@@ -29,7 +29,7 @@ public:
 
 	static void drawResult();
 
-	static void clickOnEndGame();
+	static void clickOnEndGame(int keyCode, int keyState);
 };
 
 
